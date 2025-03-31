@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./util.js" defer></script>
+    <script src="./index.js" defer></script>
+    <link rel="icon" href="./img/logo.png" type="image/png"> 
+    <title>Corrida Lendária</title>
+</head>
+<body>
+    <div id="start-screen">
+        <img src="./img/logo.png" alt="Logo do Jogo" id="game-logo">
+        <h1>Corrida Lendária</h1>
+        <h2>Desafie seus limites na pista!</h2>
+        <p>Escolha seu carro:</p>
+        <div id="car-selection">
+            <div class="car-card" onclick="escolherCarro(0)">
+                <img src="./img/car2.png" alt="Carro 1">
+                <p>Carro 1</p>
+            </div>
+            <div class="car-card" onclick="escolherCarro(1)">
+                <img src="./img/car3.png" alt="Carro 2">
+                <p>Carro 2</p>
+            </div>
+            <div class="car-card" onclick="escolherCarro(2)">
+                <img src="./img/car4.png" alt="Carro 3">
+                <p>Carro 3</p>
+            </div>
+            <div class="car-card" onclick="escolherCarro(3)">
+                <img src="./img/car5.png" alt="Carro 4">
+                <p>Carro 4</p>
+            </div>
+            <div class="car-card" onclick="escolherCarro(4)">
+                <img src="./img/car6.png" alt="Carro 5">
+                <p>Carro 5</p>
+            </div>
+            <div class="car-card" onclick="escolherCarro(5)">
+                <img src="./img/car7.png" alt="Carro 6">
+                <p>Carro 6</p>
+            </div>
+            <div class="car-card" onclick="escolherCarro(6)">
+                <img src="./img/car8.png" alt="Carro 7">
+                <p>Carro 7</p>
+            </div>
+        </div>
+        <button id="start-button">Iniciar Jogo</button>
+        <button id="volume-down-button">Diminuir Volume</button>
+        <button id="tutorial-button">Como Jogar</button>
+    </div>
+    <div id="tutorial-screen" style="display: none;">
+        <h1>Como Jogar</h1>
+        <p>Bem-vindo ao <strong>Corrida Lendária</strong>! Aqui está o que você precisa saber para começar:</p>
+        <ul>
+            <li><strong>Escolha seu carro:</strong> Clique em um dos carros disponíveis na tela inicial para selecionar.</li>
+            <li><strong>Controles do Jogador 1:</strong> Use as teclas:
+                <ul>
+                    <li><kbd>W</kbd>: Mover para cima</li>
+                    <li><kbd>S</kbd>: Mover para baixo</li>
+                    <li><kbd>A</kbd>: Mover para a esquerda</li>
+                    <li><kbd>D</kbd>: Mover para a direita</li>
+                </ul>
+            </li>
+            <li><strong>Controles do Jogador 2:</strong> Use as setas do teclado:
+                <ul>
+                    <li><kbd>↑</kbd>: Mover para cima</li>
+                    <li><kbd>↓</kbd>: Mover para baixo</li>
+                    <li><kbd>←</kbd>: Mover para a esquerda</li>
+                    <li><kbd>→</kbd>: Mover para a direita</li>
+                </ul>
+            </li>
+            <li><strong>Objetivo:</strong> Ultrapasse os carros inimigos para ganhar pontos. Evite colisões para não perder vidas.</li>
+            <li><strong>Fases:</strong> A cada 20 pontos, a dificuldade aumenta com carros mais rápidos.</li>
+            <li><strong>Game Over:</strong> O jogo termina quando ambos os jogadores perdem todas as vidas.</li>
+        </ul>
+        <button id="back-to-start-button">Voltar</button>
+    </div>
+    <canvas id="des" style="display: none;"></canvas>
+    <div id="game-over-screen" style="display: none;">
+        <img src="./img/game_over.png" alt="Game Over">
+        <p>Pontuação: <span id="final-score"></span></p>
+        <button id="restart-button">Reiniciar Jogo</button>
+    </div>
+</body>
+</html>

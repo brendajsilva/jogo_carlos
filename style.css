@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('./img/tela_inicio.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+canvas {
+    margin: auto;
+    position: absolute;
+    background-color: #8283836e;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#start-screen, #game-over-screen {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#start-screen h1, #game-over-screen p {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+#start-screen p, #game-over-screen p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#start-screen button, #game-over-screen button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+#start-screen button:hover, #game-over-screen button:hover {
+    background-color: #218838;
+}
+
+#game-over-screen img {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+#car-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.car-card {
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.car-card:hover {
+    transform: scale(1.05);
+}
+
+.car-card img {
+    width: 100%;
+    height: auto;
+}
+
+.car-card p {
+    margin: 10px 0;
+    color: white;
+}
+
+#game-logo {
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    width: 120px; 
+    border-radius: 10px; 
+    z-index: 100; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco translúcido */
+    padding: 10px; /* Espaçamento interno para a logo */
+}
+
+#mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+}
+
+#player1-controls, #player2-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#player1-controls button, #player2-controls button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+#player1-controls button:active, #player2-controls button:active {
+    background-color: #555;
+}
+
+#touch-controls button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#touch-controls button:active {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+}
+
+#tutorial-screen {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    z-index: 100;
+}
+
+#tutorial-screen h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+#tutorial-screen ul {
+    text-align: left;
+    margin: 20px auto;
+    padding: 0;
+    list-style: none;
+    max-width: 600px;
+}
+
+#tutorial-screen ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+#tutorial-screen ul li::before {
+    content: "✔";
+    color: #28a745;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#tutorial-screen ul ul {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#tutorial-screen ul ul li::before {
+    content: "•";
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#tutorial-screen button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#tutorial-screen button:hover {
+    background-color: #0056b3;
+}
