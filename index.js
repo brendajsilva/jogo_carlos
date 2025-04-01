@@ -114,7 +114,6 @@ document.addEventListener("keyup", (e) => {
     }
 });
 
-
 document.addEventListener('keypress', (e) => {
     if (e.key === 'g' && carrosSelecionados[0] && carrosSelecionados[1]) {
         startGame();
@@ -193,38 +192,58 @@ function colisao() {
 
     carrosObstaculos.forEach(carro => {
         if (f1 && f1.colid(carro)) {
-            vidas1 -= 1;
-            somBatida.play();
-            if (vidas1 <= 0) {
-                f1.speed = 0;
-                f1.dir = 0;
+            if (vidas1 > 0) {  // Só decrementa se ainda tiver vidas
+                vidas1 = Math.max(0, vidas1 - 1);  // Garante que não fique negativo
+                somBatida.play();
+                if (vidas1 <= 0) {
+                    f1.speed = 0;
+                    f1.dir = 0;
+                }
+                // Reseta a posição do jogador após colisão
+                f1.x = 250;
+                f1.y = 550;
             }
         }
         if (f2 && f2.colid(carro)) {
-            vidas2 -= 1;
-            somBatida.play();
-            if (vidas2 <= 0) {
-                f2.speed = 0;
-                f2.dir = 0;
+            if (vidas2 > 0) {  // Só decrementa se ainda tiver vidas
+                vidas2 = Math.max(0, vidas2 - 1);  // Garante que não fique negativo
+                somBatida.play();
+                if (vidas2 <= 0) {
+                    f2.speed = 0;
+                    f2.dir = 0;
+                }
+                // Reseta a posição do jogador após colisão
+                f2.x = 350;
+                f2.y = 550;
             }
         }
     });
 
     if (f1 && f2 && f1.colid(f2)) {
-        vidas1 -= 1;
-        vidas2 -= 1;
+        if (vidas1 > 0) {  // Só decrementa se ainda tiver vidas
+            vidas1 = Math.max(0, vidas1 - 1);  // Garante que não fique negativo
+            if (vidas1 <= 0) {
+                f1.speed = 0;
+                f1.dir = 0;
+            }
+            // Reseta a posição do jogador 1 após colisão
+            f1.x = 250;
+            f1.y = 550;
+        }
+        if (vidas2 > 0) {  // Só decrementa se ainda tiver vidas
+            vidas2 = Math.max(0, vidas2 - 1);  // Garante que não fique negativo
+            if (vidas2 <= 0) {
+                f2.speed = 0;
+                f2.dir = 0;
+            }
+            // Reseta a posição do jogador 2 após colisão
+            f2.x = 350;
+            f2.y = 550;
+        }
         somBatida.play();
-        if (vidas1 <= 0) {
-            f1.speed = 0;
-            f1.dir = 0;
-        }
-        if (vidas2 <= 0) {
-            f2.speed = 0;
-            f2.dir = 0;
-        }
     }
 
-    if (vidas1 <= 0 && vidas2 <= 0) {
+    if ((vidas1 <= 0 && vidas2 <= 0) || (vidas1 <= 0 && !f2) || (vidas2 <= 0 && !f1)) {
         jogo = false;
         showGameOverScreen();
     }
