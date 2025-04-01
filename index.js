@@ -113,10 +113,10 @@ document.addEventListener("keyup", (e) => {
             if (f1 && vidas1 > 0 ) f1.dir = 0;
             break;
         case 'w':
-            if (f1 && vidas1 > 0 ) f1.dir = 0;
+            if (f1 && vidas1 > 0 ) f1.y = 0;
             break;
         case 's':
-            if (f1 && vidas1 > 0 ) f1.dir = 0; 
+            if (f1 && vidas1 > 0 ) f1.y = 0; 
             break;    
         case 'ArrowLeft':
             if (f2 && vidas2 > 0 ) f2.dir = 0;
@@ -125,10 +125,10 @@ document.addEventListener("keyup", (e) => {
             if (f2 && vidas2 > 0 ) f2.dir = 0;
             break;
         case 'ArrowUp':
-            if (f2 && vidas2 > 0 ) f2.dir = 0; 
+            if (f2 && vidas2 > 0 ) f2.y = 0; 
             break;
         case 'ArrowDown':
-            if (f2 && vidas2 > 0 ) f2.dir = 0; 
+            if (f2 && vidas2 > 0 ) f2.y = 0; 
             break;
     }
 });
