@@ -107,10 +107,14 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', (e) => {
     switch (e.key) {
         case 'a':
+            if(f1) f1.dir = 0;
+            break;
         case 'd':
             if(f1) f1.dir = 0;
             break;
         case 'ArrowLeft':
+            if(f2) f2.dir = 0;
+            break;
         case 'ArrowRight':
             if(f2) f2.dir = 0;
             break;
