@@ -78,39 +78,39 @@ document.addEventListener('keydown', (e) => {
     console.log('Tecla pressionada:', e.key); // Adicionado para depuração
     switch (e.key) {
         case 'a':
-            if(f1) f1.dir = -5;
+            if(f1 && vidas1 > 0) f1.dir = -5;
             break;
         case 'd':
-            if(f1) f1.dir = 5;
+            if(f1 && vidas1 > 0) f1.dir = 5;
             break;
         case 'w':
-            if(f1) f1.y -= 5;
+            if(f1 && vidas1 > 0) f1.y -= 5;
             break;
         case 's':
-            if(f1) f1.y += 5;
+            if(f1 && vidas1 > 0) f1.y += 5;
             break;
         case 'ArrowLeft':
-            if(f2) f2.dir = -5;
+            if(f2 && vidas2 > 0) f2.dir = -5;
             break;
         case 'ArrowRight':
-            if(f2) f2.dir = 5;
+            if(f2 && vidas2 > 0) f2.dir = 5;
             break;
         case 'ArrowUp':
-            if(f2) f2.y -= 5;
+            if(f2 && vidas2 > 0) f2.y -= 5;
             break;
         case 'ArrowDown':
-            if(f2) f2.y += 5;
+            if(f2 && vidas2 > 0) f2.y += 5;
             break;
     }
 });
 
 document.addEventListener("keyup", (e) => {
     if (e.key === 'a' || e.key === 'd') {
-        if (f1) f1.dir = 0;
+        if (f1 && vidas1 > 0) f1.dir = 0;
     }
 
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        if (f2) f2.dir = 0;
+        if (f2 && vidas2 > 0) f2.dir = 0;
     }
 });
 
@@ -189,60 +189,51 @@ function showGameOverScreen() {
 
 function colisao() {
     const carrosObstaculos = [c1, c2, c3, c4, c5, c6];
+    let colidiu1 = false;
+    let colidiu2 = false;
 
     carrosObstaculos.forEach(carro => {
         if (f1 && f1.colid(carro)) {
-            if (vidas1 > 0) {  // Só decrementa se ainda tiver vidas
-                vidas1 = Math.max(0, vidas1 - 1);  // Garante que não fique negativo
-                somBatida.play();
-                if (vidas1 <= 0) {
-                    f1.speed = 0;
-                    f1.dir = 0;
-                }
-                // Reseta a posição do jogador após colisão
-                f1.x = 250;
-                f1.y = 550;
-            }
+            colidiu1 = true;
         }
         if (f2 && f2.colid(carro)) {
-            if (vidas2 > 0) {  // Só decrementa se ainda tiver vidas
-                vidas2 = Math.max(0, vidas2 - 1);  // Garante que não fique negativo
-                somBatida.play();
-                if (vidas2 <= 0) {
-                    f2.speed = 0;
-                    f2.dir = 0;
-                }
-                // Reseta a posição do jogador após colisão
-                f2.x = 350;
-                f2.y = 550;
-            }
+            colidiu2 = true;
         }
     });
 
+    // Verifica colisão entre os jogadores
     if (f1 && f2 && f1.colid(f2)) {
-        if (vidas1 > 0) {  // Só decrementa se ainda tiver vidas
-            vidas1 = Math.max(0, vidas1 - 1);  // Garante que não fique negativo
-            if (vidas1 <= 0) {
-                f1.speed = 0;
-                f1.dir = 0;
-            }
-            // Reseta a posição do jogador 1 após colisão
-            f1.x = 250;
-            f1.y = 550;
-        }
-        if (vidas2 > 0) {  // Só decrementa se ainda tiver vidas
-            vidas2 = Math.max(0, vidas2 - 1);  // Garante que não fique negativo
-            if (vidas2 <= 0) {
-                f2.speed = 0;
-                f2.dir = 0;
-            }
-            // Reseta a posição do jogador 2 após colisão
-            f2.x = 350;
-            f2.y = 550;
-        }
-        somBatida.play();
+        colidiu1 = true;
+        colidiu2 = true;
     }
 
+    // Processa colisões para o jogador 1
+    if (colidiu1 && vidas1 > 0) {
+        vidas1--;
+        somBatida.play();
+        f1.x = 250;
+        f1.y = 550;
+        
+        if (vidas1 <= 0) {
+            f1.speed = 0;
+            f1.dir = 0;
+        }
+    }
+
+    // Processa colisões para o jogador 2
+    if (colidiu2 && vidas2 > 0) {
+        vidas2--;
+        somBatida.play();
+        f2.x = 350;
+        f2.y = 550;
+        
+        if (vidas2 <= 0) {
+            f2.speed = 0;
+            f2.dir = 0;
+        }
+    }
+
+    // Verifica se o jogo acabou
     if ((vidas1 <= 0 && vidas2 <= 0) || (vidas1 <= 0 && !f2) || (vidas2 <= 0 && !f1)) {
         jogo = false;
         showGameOverScreen();
@@ -254,8 +245,8 @@ const pontosParaFases = [20, 40, 60, 80];
 function atualizar() {
     if (!jogo) return;
 
-    if(f1) f1.move();
-    if(f2) f2.move();
+    if(f1 && vidas1 > 0) f1.move();
+    if(f2 && vidas2 > 0) f2.move();
     c1.move();
     c2.move();
     c3.move();
