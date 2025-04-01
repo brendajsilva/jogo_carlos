@@ -105,15 +105,21 @@ document.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener("keyup", (e) => {
-    if (e.key === 'a' || e.key === 'd') {
-        if (f1 && vidas1 > 0) f1.dir = 0;
-    }
-
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        if (f2 && vidas2 > 0) f2.dir = 0;
+    switch (e.key) {
+        case 'a':
+            if (f1 && vidas1 > 0 && f1.dir < 0) f1.dir = 0;
+            break;
+        case 'd':
+            if (f1 && vidas1 > 0 && f1.dir > 0) f1.dir = 0;
+            break;
+        case 'ArrowLeft':
+            if (f2 && vidas2 > 0 && f2.dir < 0) f2.dir = 0;
+            break;
+        case 'ArrowRight':
+            if (f2 && vidas2 > 0 && f2.dir > 0) f2.dir = 0;
+            break;
     }
 });
-
 document.addEventListener('keypress', (e) => {
     if (e.key === 'g' && carrosSelecionados[0] && carrosSelecionados[1]) {
         startGame();
