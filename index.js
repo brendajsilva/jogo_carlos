@@ -78,10 +78,10 @@ document.addEventListener('keydown', (e) => {
     console.log('Tecla pressionada:', e.key);
     switch (e.key) {
         case 'a':
-            if(f1 && vidas1 > 0) f1.dir = -5;
+            if(f1 && vidas1 > 0) f1.dir = -10;
             break;
         case 'd':
-            if(f1 && vidas1 > 0) f1.dir = 5;
+            if(f1 && vidas1 > 0) f1.dir = 10;
             break;
         case 'w':
             if(f1 && vidas1 > 0) f1.y -= 10; 
@@ -90,10 +90,10 @@ document.addEventListener('keydown', (e) => {
             if(f1 && vidas1 > 0) f1.y += 10; 
             break;
         case 'ArrowLeft':
-            if(f2 && vidas2 > 0) f2.dir = -5;
+            if(f2 && vidas2 > 0) f2.dir = -10;
             break;
         case 'ArrowRight':
-            if(f2 && vidas2 > 0) f2.dir = 5;
+            if(f2 && vidas2 > 0) f2.dir = 10;
             break;
         case 'ArrowUp':
             if(f2 && vidas2 > 0) f2.y -= 10; 
@@ -112,11 +112,23 @@ document.addEventListener("keyup", (e) => {
         case 'd':
             if (f1 && vidas1 > 0 ) f1.dir = 0;
             break;
+        case 'w':
+            if (f1 && vidas1 > 0 ) f1.dir = 0;
+            break;
+        case 's':
+            if (f1 && vidas1 > 0 ) f1.dir = 0; 
+            break;    
         case 'ArrowLeft':
             if (f2 && vidas2 > 0 ) f2.dir = 0;
             break;
         case 'ArrowRight':
             if (f2 && vidas2 > 0 ) f2.dir = 0;
+            break;
+        case 'ArrowUp':
+            if (f2 && vidas2 > 0 ) f2.dir = 0; 
+            break;
+        case 'ArrowDown':
+            if (f2 && vidas2 > 0 ) f2.dir = 0; 
             break;
     }
 });
