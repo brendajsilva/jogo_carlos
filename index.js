@@ -201,13 +201,11 @@ function colisao() {
         }
     });
 
-    // Verifica colisão entre os jogadores
     if (f1 && f2 && f1.colid(f2)) {
         colidiu1 = true;
         colidiu2 = true;
     }
 
-    // Processa colisões para o jogador 1
     if (colidiu1 && vidas1 > 0) {
         vidas1--;
         somBatida.play();
@@ -215,12 +213,11 @@ function colisao() {
         f1.y = 550;
         
         if (vidas1 <= 0) {
-            f1.speed = 0;
-            f1.dir = 0;
+            f1 = null; 
         }
     }
 
-    // Processa colisões para o jogador 2
+   
     if (colidiu2 && vidas2 > 0) {
         vidas2--;
         somBatida.play();
@@ -228,17 +225,16 @@ function colisao() {
         f2.y = 550;
         
         if (vidas2 <= 0) {
-            f2.speed = 0;
-            f2.dir = 0;
+            f2 = null; 
         }
     }
 
-    // Verifica se o jogo acabou
-    if ((vidas1 <= 0 && vidas2 <= 0) || (vidas1 <= 0 && !f2) || (vidas2 <= 0 && !f1)) {
+    if ((vidas1 <= 0 && (vidas2 <= 0 || !f2)) || (vidas2 <= 0 && (vidas1 <= 0 || !f1))) {
         jogo = false;
         showGameOverScreen();
     }
 }
+
 
 const pontosParaFases = [20, 40, 60, 80];
 
@@ -295,8 +291,10 @@ function desenhar() {
     c4.draw();
     c5.draw();
     c6.draw();
-    if (f1) f1.draw();
-    if (f2) f2.draw();
+    
+    if (f1 && vidas1 > 0) f1.draw();
+    if (f2 && vidas2 > 0) f2.draw();
+
 
     // Configurações para o texto do Jogador 1 com sombra
     des.fillStyle = 'white';
